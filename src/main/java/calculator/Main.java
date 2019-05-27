@@ -2,6 +2,8 @@ package calculator;
 
 public class Main {
     public static void main(String args[]){
-        System.out.println("Calculator");
+        Calculator calculator = new Calculator();
+        calculator.validate("124*234");
+        System.out.println(calculator.operate());
     }
 }
