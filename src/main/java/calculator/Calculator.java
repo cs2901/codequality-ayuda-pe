@@ -5,7 +5,7 @@ public class Calculator{
     private String [] values;
     private Operator op;
     private char [] operators = {'+','-','*','/'};
-
+    private double Ans;
     public Calculator() {
         values = new String[2];
     }
@@ -32,22 +32,35 @@ public class Calculator{
         values[1] = term;
     }
 
+    private double parseToNumber(String value)
+    {
+        if(value.equals("Ans"))
+            return Ans;
+        else
+            return Double.parseDouble(value);
+    }
+
     public double operate(){
         String type = op.getType();
-        double num1 = Double.parseDouble(values[0]);
-        double num2 = Double.parseDouble(values[1]);
+        double num1 = parseToNumber(values[0]);
+        double num2 = parseToNumber(values[1]);
         if(type.equals("sum")){
+            Ans = num1+num2;
             return num1+num2;
         }
         else if(type.equals("substract")){
+            Ans = num1 - num2;
             return num1-num2;
         }
         else if(type.equals("multiply")){
+            Ans = num1*num2;
             return num1*num2;
         }
         else if(type.equals("divide")){
-            if(num2 != 0)
-                return num1/num2;
+            if(num2 != 0) {
+                Ans = num1/num2;
+                return num1 / num2;
+            }
             else {
                 System.out.println("Error de división entre cero");
                 return -1;
